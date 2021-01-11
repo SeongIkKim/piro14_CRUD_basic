@@ -7,9 +7,7 @@
   </head>
   <body>
     {% for post in posts %}
-      <h2> 제목 : {{ post.title }} </h1> <br>
-      <h4> 글쓴이 : {{ post.writer }} </h4> <br>
-      {{ post.content }} <br>
+      <h2> 제목 : {{ post.title }} </h1> 글쓴이 : {{ post.writer }}<br>
       ############################################## <br>
     {% endfor %}
   </body>
