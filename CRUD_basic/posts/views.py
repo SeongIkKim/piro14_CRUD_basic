@@ -1,8 +1,12 @@
+from .models import Post
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
+# Create your views here
 
 
 def post_list(request):
-    return HttpResponse('글 리스트')
+    posts = Post.objects.all()
+    ctx = {'posts': posts}
+
+    return render(request, template_name='posts/list.html', context=ctx)
