@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all()  # 정확히는 여기가 Retrieve(Read)
     ctx = {'posts': posts}
 
     return render(request, template_name='posts/list.html', context=ctx)
