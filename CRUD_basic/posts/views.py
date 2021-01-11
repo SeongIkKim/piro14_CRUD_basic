@@ -56,7 +56,7 @@ def create_post(request):
 
 def update_post(request, post_id):
     '''
-    Update = UPDATE
+    Update == UPDATE
     DB에 저장된 객체를 다시 form형태로 불러와 수정하고, 재저장하는 뷰
     '''
     post = get_object_or_404(
@@ -75,3 +75,21 @@ def update_post(request, post_id):
         form = PostForm(instance=post)
         ctx = {'form': form}
         return render(request, 'posts/post_form.html', ctx)
+
+
+def delete_post(request, post_id):
+    '''
+    delete == DELETE
+    DB에 저장된 객체를 불러와 삭제하는 뷰
+    '''
+    post = get_object_or_404(Post, id=post_id)
+
+    # 유저가 주소창에에 delete의 url를 직접 쳐서 들어오는 경우를 고려하여 GET처리를 해준다
+    if request.method == "GET":
+        return redirect('posts:detail', post_id)
+    elif request.method == "POST":
+        post.delete()
+        return redirect('posts:list')
+
+    # GET과 POST의 순서는 이런식으로 바뀌어도 상관없습니다.
+    # 단, 사용자가 GET과 POST방식으로만 접근한다는 보장은 없으므로, 이외의 method를 사용 시 오류가 날 수 있습니다.

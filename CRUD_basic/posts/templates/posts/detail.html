@@ -13,6 +13,11 @@
             {{ post.content }} <br>
             <a href="{% url 'posts:list' %}">뒤로 가기</a>
             <a href="{% url 'posts:update' post.id %}">수정하기</a>
+
+            <form action="{% url 'posts:delete' post.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="삭제하기">
+            </form>
 </body>
 
 </html>
