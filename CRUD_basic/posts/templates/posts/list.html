@@ -8,6 +8,7 @@
 </head>
 
 <body>
+  <a href="{% url 'posts:create' %}">새 글 작성하기</a>
   {% for post in posts %}
   <h2> 제목 : <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a> </h1> 글쓴이 : {{ post.writer }}<br>
     ############################################## <br>
